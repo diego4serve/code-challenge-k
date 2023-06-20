@@ -1,0 +1,39 @@
+<!-- scraps.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scraps Listing</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1><%= scrap.name %></h1>
+  
+  <a href="/scraps">Back</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% scrap.links.forEach(function(link) { %>
+        <tr>
+          <td><%= link.name %></td>
+          <td><a href="<%= link.url %>"><%= link.url %></a></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>

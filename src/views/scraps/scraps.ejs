@@ -1,0 +1,84 @@
+<!-- scraps.ejs -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Listado de Scraps</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .form {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="/logout">Logout</a><br />
+
+  <form class="form" method="POST" action="/scraps">
+    <input type="url" id="url" name="url" placeholder="Add new page" size="50" required>
+    <button type="submit">Scrape</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>URL</th>
+        <th>Total links</th>
+        <th>View</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% scraps.forEach(function(scrap) { %>
+        <tr>
+          <td>
+            <%= scrap.name %>
+          </td>
+          <td><a href="<%= scrap.url %>">
+              <%= scrap.url %>
+            </a></td>
+          <td>
+            <% if (scrap.status === 'pending') { %>
+              <p>In progress</p>
+            <% } else { %>
+              <p><%= scrap.links.length %></p>
+            <% } %>
+          </td>
+          <td><a href="/scraps/<%= scrap.id %>">View details</a></td>
+        </tr>
+        <% }); %>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <% if (currentPage > 1) { %>
+      <a href="/scraps?page=<%= currentPage - 1 %>">&laquo; Prev</a>
+    <% } %>
+  
+    <% for (let i = 1; i <= totalPages; i++) { %>
+      <% if (i === currentPage) { %>
+        <span class="current-page"><%= i %></span>
+      <% } else { %>
+        <a href="/scraps?page=<%= i %>"><%= i %></a>
+      <% } %>
+    <% } %>
+  
+    <% if (currentPage < totalPages) { %>
+      <a href="/scraps?page=<%= currentPage + 1 %>">Next &raquo;</a>
+    <% } %>
+</body>
+
+</html>

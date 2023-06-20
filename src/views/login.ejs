@@ -1,0 +1,30 @@
+<!-- login.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    .form {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Login</h1>
+  
+  <form class="form" method="POST" action="/login">
+    <div>
+      <label for="username">Email:</label>
+      <input type="username" id="username" name="username" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit">Login</button>
+  </form>
+
+  <a href="/register">Sign In!</a>
+</body>
+</html>
