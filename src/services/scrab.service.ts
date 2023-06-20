@@ -7,7 +7,6 @@ import { User } from "../entity/User";
 import { linkService } from "./link.service";
 import { plainToClass } from "class-transformer";
 
-
 const create = async (url: string, user: User) => {
   const scrapRespository = AppDataSource.getRepository(Scrap);
   const newScrap = new Scrap();
